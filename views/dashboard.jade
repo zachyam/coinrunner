@@ -1,0 +1,198 @@
+extends layout
+
+block content
+	head
+	style
+		include bootstrap.css
+		include style.css
+	script
+		include jquery.js
+		include high.js
+		include high2.js
+	script.
+		$(function () {
+		$('#container3').highcharts({
+		title: {
+		text: 'Daily Transactions',
+		x: -20 //center
+		},
+		subtitle: {
+		x: -20
+		},
+		xAxis: {
+		max: 5,
+		categories: ['9/13', '9/14', '9/15', '9/16', '9/17', '9/18']
+		},
+		yAxis: {
+		title: {
+		text: 'Amount'
+		},
+		plotLines: [{
+		value: 0,
+		width: 1,
+		color: '#808080'
+		}]
+		},
+		tooltip: {
+		valueSuffix: 'ETH'
+		},
+		legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle',
+		borderWidth: 0
+		},
+		series: [{
+		name: 'Ether',
+		data: [#{total[0]}, #{total[1]}, #{total[2]}, #{total[3]}, #{total[4]}, #{total[5]}]
+		}]
+		});
+		});
+	script.
+		$(function () {
+		$('#container').highcharts({
+		chart: {
+		type: 'column'
+		},
+		title: {
+		text: 'Monthly Transactions'
+		},
+		subtitle: {
+		text: ''
+		},
+		xAxis: {
+		max: 2,
+		categories: [
+		'Jul',
+		'Aug',
+		'Sep',
+		],
+		crosshair: true
+		},
+		yAxis: {
+		min: 0,
+		title: {
+		text: 'Amount'
+		}
+		},
+		tooltip: {
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		'<td style="padding:0"><b>{point.y:.1f} ETH</b></td></tr>',
+		footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+		},
+		plotOptions: {
+		column: {
+		pointPadding: 0.2,
+		borderWidth: 0
+		}
+		},
+		series: [{
+		name: 'Ether',
+		data: [0, 0, #{total}]
+		}]
+		});
+		});
+	script.
+		$(function () {
+		$('#container2').highcharts({
+		chart: {
+		type: 'bar'
+		},
+		title: {
+		text: 'Account Balance'
+		},
+		subtitle: {
+		text: ''
+		},
+		xAxis: {
+		max: 1,
+		categories: ['Ether', 'Bitcoin'],
+		title: {
+		text: null
+		}
+		},
+		yAxis: {
+		min: 0,
+		title: {
+		text: '',
+		align: 'high'
+		},
+		labels: {
+		overflow: 'hidden'
+		}
+		},
+		tooltip: {
+		valueSuffix: 'ETH'
+		},
+		plotOptions: {
+		bar: {
+		dataLabels: {
+			enabled: true
+		}
+		}
+		},
+		legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'top',
+		x: -40,
+		y: 80,
+		floating: true,
+		borderWidth: 1,
+		backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+		shadow: true
+		},
+		credits: {
+		enabled: false
+		},
+		series: [{
+		name: 'Amount',
+		data: [#{balance[0]}, #{balance[2]}]
+		}]
+		});
+		});
+	body
+		.navbar.navbar-inverse
+			.navbar-inner
+				.container 
+					a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+						span.icon-bar 
+						span.icon-bar
+						span.icon-bar
+					a.brand(href='/') 
+					.nav-collapse.collapse
+						ul.nav
+							li: active: a(href='/') Home
+							li: a(href='/') About
+							li: a(href='/') Contact
+							li.dropdown
+								a.dropdown-toggle(href='#', data-toggle="dropdown") Dropdown <b class="caret"></b>
+								ul.dropdown-menu
+									li: a(href='#') Action
+									li: a(href='#') Another action
+									li: a(href='#') Something else here
+									li.divider
+									li.nav-header Nav header
+									li: a(href='#') Separated link
+									li: a(href='#') One more separated link
+						form.navbar-form.pull-right
+							input.span2(type="text", placeholder="Email") 
+							| 
+							input.span2(type="password", placeholder="Password") 
+							| 
+							button.btn(type="submit") Sign in
+	h1= title
+	hr 
+	br
+	div(class="container")
+		div(class="col-lg-6")
+			div(id="container")
+			br
+			br
+		div(class="col-lg-6")
+			div(id="container2")
+		div(class="col-lg-12")
+			div(id="container3")
