@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var Client = require('coinbase').Client;
-var client = new Client({'apiKey': '3FKhgE8DSfNX2fTx', 'apiSecret': 'ZpvkbipchxXJ0cGxxAcY5atZRTGomdyR'});
+var client = new Client({'apiKey': '', 'apiSecret': ''});
 
 var app = express();
 
