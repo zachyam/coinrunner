@@ -3,7 +3,7 @@ var router = express.Router();
 
 // import from coinbase and authenticate APIKey
 var coinbase = require('coinbase');
-var client = new coinbase.Client({'apiKey': '3FKhgE8DSfNX2fTx', 'apiSecret': 'ZpvkbipchxXJ0cGxxAcY5atZRTGomdyR'});
+var client = new coinbase.Client({'apiKey': '', 'apiSecret': ''});
 
 // declare variables we will pass into render function
 var bal = [];
